@@ -56,7 +56,7 @@ Create a virtual environment and install dependencies:
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 Run the hunting workflow:
@@ -75,6 +75,13 @@ Run the basic test suite:
 
 ```powershell
 python -m unittest discover -s tests
+```
+
+If `pip install pandas` says the package is already installed but the script still reports `Missing dependency: pandas`, install through the same interpreter that runs the lab:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe .\src\run_hunt.py --data-dir .\data --output-dir .\reports
 ```
 
 ## Example Workflow
