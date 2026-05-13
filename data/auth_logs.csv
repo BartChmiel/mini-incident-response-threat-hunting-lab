@@ -1,0 +1,14 @@
+timestamp,event_id,event_type,outcome,user,host,source_ip,logon_type,privilege,details
+2026-05-10T18:55:10Z,4624,logon,success,alice,WS-101,10.10.5.20,Interactive,,Normal workstation login
+2026-05-10T20:01:08Z,4625,logon,failure,svc-backup,SRV-DC01,203.0.113.40,Network,,Bad password
+2026-05-10T20:02:14Z,4625,logon,failure,svc-backup,SRV-DC01,203.0.113.40,Network,,Bad password
+2026-05-10T20:03:01Z,4625,logon,failure,svc-backup,SRV-DC01,203.0.113.40,Network,,Bad password
+2026-05-10T20:04:33Z,4625,logon,failure,svc-backup,SRV-DC01,203.0.113.40,Network,,Bad password
+2026-05-10T20:05:21Z,4625,logon,failure,svc-backup,SRV-DC01,203.0.113.40,Network,,Bad password
+2026-05-10T20:07:02Z,4624,logon,success,svc-backup,SRV-DC01,203.0.113.40,Network,,Successful login after failures
+2026-05-10T20:07:09Z,4672,privilege,success,svc-backup,SRV-DC01,203.0.113.40,Network,SeDebugPrivilege;SeBackupPrivilege,Special privileges assigned to new logon
+2026-05-11T01:16:42Z,4624,logon,success,bob,WS-104,198.51.100.23,RemoteInteractive,,VPN remote desktop session
+2026-05-11T01:18:03Z,4728,account_change,success,bob,SRV-DC01,198.51.100.23,RemoteInteractive,Domain Admins,User added to privileged group
+2026-05-11T08:10:02Z,4625,logon,failure,carol,WS-102,10.10.5.51,Interactive,,Mistyped password
+2026-05-11T08:11:14Z,4624,logon,success,carol,WS-102,10.10.5.51,Interactive,,Normal login after single failure
+
