@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from collections import Counter
-from datetime import UTC, datetime
 from pathlib import Path
 
 import pandas as pd
@@ -89,8 +88,31 @@ def _bullet_list(items: list[str]) -> str:
     return "\n".join(f"- {item}" for item in items)
 
 
+def _severity_summary(severity_counts: Counter[str]) -> str:
+    ordered = ["Critical", "High", "Medium", "Low"]
+    parts = [
+        f"{severity}: {severity_counts[severity]}"
+        for severity in ordered
+        if severity_counts.get(severity, 0) > 0
+    ]
+    return ", ".join(parts) if parts else "None"
+
+
+def _escalation_decision(finding: Finding) -> str:
+    if finding.severity in {"Critical", "High"}:
+        return (
+            "Escalate for analyst review and correlate with identity, endpoint, "
+            "and network logs before containment."
+        )
+    if finding.severity == "Medium":
+        return (
+            "Review in the analyst queue and escalate if the activity is not tied "
+            "to expected user or admin behavior."
+        )
+    return "Document and monitor unless more suspicious activity appears."
+
+
 def render_triage_notes(findings: list[Finding], timeline: pd.DataFrame) -> str:
-    generated_at = datetime.now(UTC).isoformat(timespec="seconds")
     severity_counts = Counter(finding.severity for finding in findings)
     highest_severity = "None"
     if findings:
@@ -99,13 +121,14 @@ def render_triage_notes(findings: list[Finding], timeline: pd.DataFrame) -> str:
     lines = [
         "# Incident Triage Notes",
         "",
-        f"Generated at: {generated_at}",
+        "Dataset: sample JSON/CSV lab logs",
+        "Purpose: SIEM-style alert triage and timeline review",
         "",
         "## Executive Summary",
         "",
         f"- Total findings: {len(findings)}",
         f"- Highest severity: {highest_severity}",
-        f"- Severity breakdown: {dict(severity_counts)}",
+        f"- Severity breakdown: {_severity_summary(severity_counts)}",
         "",
         "## Timeline Reconstruction",
         "",
@@ -145,6 +168,10 @@ def render_triage_notes(findings: list[Finding], timeline: pd.DataFrame) -> str:
                 "Evidence:",
                 "",
                 _bullet_list(finding.evidence),
+                "",
+                "Escalation Decision:",
+                "",
+                _escalation_decision(finding),
                 "",
                 "False-Positive Considerations:",
                 "",

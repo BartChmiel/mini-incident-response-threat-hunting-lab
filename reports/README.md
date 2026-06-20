@@ -1,6 +1,6 @@
 # Reports
 
-Generated hunting outputs are written here:
+Example hunting outputs are written here:
 
 - `findings.csv`
 - `timeline.csv`
@@ -11,4 +11,3 @@ Run:
 ```powershell
 python .\src\run_hunt.py --data-dir .\data --output-dir .\reports
 ```
-

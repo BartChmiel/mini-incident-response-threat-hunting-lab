@@ -1,19 +1,20 @@
 # Mini Incident Response and Threat Hunting Lab
 
-Personal cybersecurity project, in progress  
+Personal cybersecurity project  
 May 2026 - Present
 
 ## Overview
 
-This lab simulates a small incident response and threat hunting workflow using structured JSON/CSV logs for authentication, endpoint, and network security events.
+Small SOC-style incident response and threat hunting lab built around structured JSON/CSV logs. The dataset simulates authentication, endpoint, and network security events, and the Python code turns those logs into detections, findings, timelines, and triage notes.
 
-The current implementation includes:
+The project covers the same workflow I would follow when reviewing a small SIEM-style alert queue:
 
-- Sample authentication, endpoint, and network telemetry.
-- Python/Pandas detections for common suspicious behaviors.
-- MITRE ATT&CK mapping for each finding type.
-- Markdown triage notes with timeline reconstruction, affected entities, indicators, severity, false-positive considerations, and next steps.
-- CSV outputs for detected findings and consolidated timeline review.
+- Load sample authentication, endpoint, and network telemetry.
+- Run Python/Pandas detections for common suspicious behaviors.
+- Create findings with affected users, hosts, source IPs, indicators, and severity.
+- Build a consolidated timeline for analyst review.
+- Generate Markdown triage notes with false-positive considerations, escalation decisions, and recommended next steps.
+- Map the detection scenarios to MITRE ATT&CK techniques.
 
 ## Detection Coverage
 
@@ -25,6 +26,14 @@ The current implementation includes:
 | After-hours successful logins | `data/auth_logs.csv` | T1078 - Valid Accounts |
 | Privilege and account administration events | `data/auth_logs.csv` | T1098 - Account Manipulation |
 | Suspicious outbound network activity | `data/network_events.csv` | T1071 - Application Layer Protocol, T1105 - Ingress Tool Transfer |
+
+## Outputs
+
+The generated report files are kept in `reports/` as an example of the review output:
+
+- `findings.csv` - normalized findings from all detections.
+- `timeline.csv` - combined authentication, endpoint, and network activity ordered by time.
+- `triage_notes.md` - Markdown investigation notes with evidence, MITRE mapping, escalation decision, and next steps.
 
 ## Project Structure
 
@@ -88,19 +97,19 @@ If `pip install pandas` says the package is already installed but the script sti
 
 1. Ingest structured sample logs from `data/`.
 2. Run detection logic in `src/ir_lab/detections.py`.
-3. Normalize suspicious events into audit-ready finding records.
+3. Normalize suspicious events into finding records.
 4. Reconstruct an investigation timeline.
 5. Generate triage notes in Markdown for analyst review.
 
-## Analyst Notes
+## Sample Data Notes
 
-The dataset is intentionally small and uses documentation IP address ranges such as `203.0.113.0/24` and `198.51.100.0/24`. These are safe placeholders, not real indicators.
+The dataset is small on purpose and uses documentation IP ranges such as `203.0.113.0/24` and `198.51.100.0/24`, so the indicators are not real-world infrastructure.
 
-This project is designed as a portfolio lab and can be expanded with:
+Possible next additions:
 
 - More Windows Event ID concepts.
 - Sigma-style rule metadata.
 - Additional endpoint telemetry.
-- More realistic identity provider logs.
+- Identity provider or VPN logs.
 - Unit tests and CI checks.
 - Dashboarding in Jupyter or Streamlit.

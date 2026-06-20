@@ -1,6 +1,6 @@
 # MITRE ATT&CK Mapping
 
-This lab uses a small set of ATT&CK mappings to keep the investigation notes practical and audit-ready.
+This file documents how the lab detections map to MITRE ATT&CK. The mappings are kept simple so each finding can be reviewed quickly during triage.
 
 | Behavior | Technique | Rationale |
 | --- | --- | --- |
@@ -13,7 +13,6 @@ This lab uses a small set of ATT&CK mappings to keep the investigation notes pra
 
 ## Notes
 
-- Technique mappings are intentionally conservative.
-- A finding should not be treated as confirmed malicious without context enrichment.
-- Recommended enrichment sources include identity provider logs, VPN logs, EDR telemetry, DNS/proxy logs, and change management records.
-
+- The mappings describe suspicious behavior, not confirmed compromise.
+- Findings should be validated with surrounding context before containment.
+- Useful enrichment sources include identity provider logs, VPN logs, EDR telemetry, DNS/proxy logs, and change management records.

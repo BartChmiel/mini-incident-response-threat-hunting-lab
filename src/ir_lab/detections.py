@@ -254,7 +254,7 @@ def detect_suspicious_powershell(
                 source_ip="",
                 description=(
                     f"PowerShell command on {row['host']} used suspicious execution "
-                    "patterns commonly seen in script-based intrusion activity."
+                    "flags or download/encoding behavior."
                 ),
                 mitre_attack=[
                     "T1059.001 - PowerShell",
